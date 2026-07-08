@@ -8,7 +8,7 @@ function WelcomePage() {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate("/page2"); // Navigate after 2 seconds
-    }, 2000);
+    }, 4000);
 
     return () => clearTimeout(timer);
   }, [navigate]);
