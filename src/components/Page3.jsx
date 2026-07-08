@@ -13,11 +13,11 @@ function Page3() {
       <div className="text-center text-2xl mt-5">
        Fresh &Quality Foods
       </div>
-      <div className="text-center text-l p-5 m-3">
+      <div className="text-center text-l p-4 m-3">
         Every Dish prepared with care and professional 
         chef using the finest ingredients
       </div>
-      <div className="flex justify-center gap-5 mt-7">
+      <div className="flex justify-center gap-5 mt-15 mb-8">
         <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
         <div className="w-10 h-3 bg-[#FB5203] rounded-full"></div>
         <div className="w-3 h-3 bg-gray-400 rounded-full"></div>

@@ -17,7 +17,7 @@ function Page4() {
         Get your food Deliverd hot and freshto
               your doorsteps in minits
       </div>
-      <div className="flex justify-center gap-5 mt-8">
+      <div className="flex justify-center gap-5 mt-10 mb-8">
         <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
         <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
         <div className="w-10 h-3 bg-[#FB5203] rounded-full"></div>
