@@ -5,6 +5,7 @@ import { GiNoodles } from "react-icons/gi";
 import { useState } from "react";
 import pizza from "../assets/pizza.png"
 import sushi from "../assets/sushi.png"
+import Footer from "../components/Footer";
 function Home(){
      const [products] = useState([
     {
@@ -113,7 +114,13 @@ function Home(){
                 </div>
                 </div>
             </div>
+            
+             <>
+             <Footer />
+             </>
         </div>
+        
+        
     );
 }
 export default Home;

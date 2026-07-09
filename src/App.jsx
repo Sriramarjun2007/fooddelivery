@@ -5,6 +5,7 @@ import Page3 from "./components/Page3";
 import Page4 from "./components/Page4";
 import Loginpage from "./pages/Loginpage"
 import Home from "./pages/Home";
+import Footer from "./Footer";
 function App() {
   return (
     <BrowserRouter>
