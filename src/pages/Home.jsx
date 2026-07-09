@@ -5,25 +5,60 @@ import { GiNoodles } from "react-icons/gi";
 import { useState } from "react";
 import pizza from "../assets/pizza.png"
 import sushi from "../assets/sushi.png"
+import burger from "../assets/burger.png"
+import Sushicompo from "../assets/Sushicompo.png"
+import vegbowl from "../assets/vegbowl.png"
 import Footer from "../components/Footer";
 function Home(){
-     const [products] = useState([
-    {
-      id: 1,
-      name: "Margherita Pizza",
-      description: "Fresh mozzarella, tomato sauce, basil",
-      price: "₹400",
-      image: pizza,
-    },
-    {
-      id: 2,
-      name: "Sushi compo",
-      description: "Assorted fresh sushi rools",
-      price: "₹250",
-      image: sushi,
-    },
-   
-  ]);   
+    const [selectedCategory, setSelectedCategory] = useState("all");
+    const [products] = useState([
+  {
+    id: 1,
+    name: "Margherita Pizza",
+    category: "pizza",
+    description: "Fresh mozzarella, tomato sauce, basil",
+    price: "₹400",
+    image: pizza,
+  },
+  {
+    id: 2,
+    name: "Sushi",
+    category: "fire",
+    description: "Assorted fresh sushi rolls",
+    price: "₹250",
+    image: sushi,
+  },
+  {
+    id: 3,
+    name: "Classic Burger",
+    category: "burger",
+    description: "Beef patty, cheese, lettuce",
+    price: "₹350",
+    image: burger,
+  },
+  {
+    id: 4,
+    name: "Sushi Combo",
+    category: "fire",
+    description: "Sushi rolls with salad",
+    price: "₹150",
+    image: Sushicompo,
+  },
+  {
+    id: 5,
+    name: "Veg Bowl",
+    category: "noodles",
+    description: "Healthy veg bowl",
+    price: "₹120",
+    image: vegbowl,
+  },
+]);  
+const filteredProducts =
+    selectedCategory === "all"
+      ? products
+      : products.filter(
+          (product) => product.category === selectedCategory
+        );
     return(
         <div className="pl-5 pr-5 block inset-0 md:hidden">
             <div className="mt-2 ">
@@ -56,36 +91,71 @@ function Home(){
                 </div>
                 <div className="ml-8 mt-2 font-bold">Categories</div>
                 <div>
-                    <div className="flex justify-center gap-4 mt-5">
+                   <div className="flex justify-center gap-4 mt-5">
 
-                        {/* Fire - Active */}
-                        <div className="w-12 h-12 bg-[#FB5203] rounded-lg flex items-center justify-center cursor-pointer">
-                            <FaFireAlt className="text-white text-2xl" />
+                        {/* Fire */}
+                        <div
+                            onClick={() => setSelectedCategory("all")}
+                            className={`w-12 h-12 rounded-lg flex items-center justify-center cursor-pointer transition ${
+                            selectedCategory === "all"
+                                ? "bg-[#FB5203] text-white"
+                                : "bg-white"
+                            }`}
+                        >
+                            <FaFireAlt className="text-2xl" />
                         </div>
 
                         {/* Pizza */}
-                        <div className="w-12 h-12 rounded-lg flex items-center justify-center cursor-pointer">
+                        <div
+                            onClick={() => setSelectedCategory("pizza")}
+                            className={`w-12 h-12 rounded-lg flex items-center justify-center cursor-pointer transition ${
+                            selectedCategory === "pizza"
+                                ? "bg-[#FB5203] text-white"
+                                : "bg-white"
+                            }`}
+                        >
                             <FaPizzaSlice className="text-2xl" />
                         </div>
 
                         {/* Burger */}
-                        <div className="w-12 h-12 rounded-lg flex items-center justify-center cursor-pointer">
+                        <div
+                            onClick={() => setSelectedCategory("burger")}
+                            className={`w-12 h-12 rounded-lg flex items-center justify-center cursor-pointer transition ${
+                            selectedCategory === "burger"
+                                ? "bg-[#FB5203] text-white"
+                                : "bg-white"
+                            }`}
+                        >
                             <FaHamburger className="text-2xl" />
                         </div>
 
                         {/* Noodles */}
-                        <div className="w-12 h-12 rounded-lg flex items-center justify-center cursor-pointer">
+                        <div
+                            onClick={() => setSelectedCategory("noodles")}
+                            className={`w-12 h-12 rounded-lg flex items-center justify-center cursor-pointer transition ${
+                            selectedCategory === "noodles"
+                                ? "bg-[#FB5203] text-white"
+                                : "bg-white"
+                            }`}
+                        >
                             <GiNoodles className="text-2xl" />
                         </div>
 
                         {/* Ice Cream */}
-                        <div className="w-12 h-12 rounded-lg flex items-center justify-center cursor-pointer">
+                        <div
+                            onClick={() => setSelectedCategory("icecream")}
+                            className={`w-12 h-12 rounded-lg flex items-center justify-center cursor-pointer transition ${
+                            selectedCategory === "icecream"
+                                ? "bg-[#FB5203] text-white"
+                                : "bg-white"
+                            }`}
+                        >
                             <FaIceCream className="text-2xl" />
                         </div>
 
-                    </div>
+                        </div>
                     <div className="grid grid-cols-1 gap-4 p-10">
-                            {products.map((product) => (
+                            {filteredProducts.map((product) => (
                                 <div
                                 key={product.id}
                                 className="bg-white rounded-xl overflow-hidden shadow-md"
@@ -115,9 +185,13 @@ function Home(){
                 </div>
             </div>
             
-             <>
-             <Footer />
-             </>
+              <>
+                <div className="pl-5 pr-5 pb-24 md:hidden">
+                {/* Your entire Home page content goes here */}
+                </div>
+
+                <Footer />
+            </>
         </div>
         
         
