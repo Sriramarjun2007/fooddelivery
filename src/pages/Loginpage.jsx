@@ -88,7 +88,7 @@ function LoginPage() {
         <p className="text-red-500 text-right cursor-pointer mt-1">
           Forgot Password?
         </p>
-
+          
         <button
           type="submit"
           className="w-full bg-[#FB5203] text-white p-3 rounded-xl mt-2"
@@ -97,27 +97,31 @@ function LoginPage() {
         </button>
       </form>
 
-      <p className="ml-5 mr-5 p-2">
-        ──────── or continue with ────────
-      </p>
+      <div className="flex items-center ml-5 mr-5 my-4">
+        <hr className="flex-1 border-gray-300" />
+        <span className="px-3 text-gray-500 text-sm">
+          or continue with
+        </span>
+        <hr className="flex-1 border-gray-300" />
+      </div>
 
       <div className="space-y-2 mt-2 ml-5 mr-5">
 
-        <button className="w-full flex items-center gap-5 bg-gray-200 rounded-2xl px-2 py-2">
+        <button className="w-full flex items-center pl-20 gap-2 bg-gray-200 rounded-2xl px-2 py-2">
           <FcGoogle className="text-xl" />
           <span className="text-lg font-medium text-[#4B1E1E]">
             Continue with Google
           </span>
         </button>
 
-        <button className="w-full flex items-center gap-5 bg-gray-200 rounded-2xl px-2 py-2">
+        <button className="w-full flex items-center justify-center gap-2 bg-gray-200 rounded-2xl px-2 py-2">
           <FaFacebook className="text-xl text-blue-600" />
           <span className="text-lg font-medium text-[#4B1E1E]">
             Continue with Facebook
           </span>
         </button>
 
-        <button className="w-full flex items-center gap-5 bg-gray-200 rounded-2xl px-2 py-2">
+        <button className="w-full flex items-center pl-20 gap-2 bg-gray-200 rounded-2xl px-2 py-2">
           <FaApple className="text-xl text-black" />
           <span className="text-lg font-medium text-[#4B1E1E]">
             Continue with Apple
