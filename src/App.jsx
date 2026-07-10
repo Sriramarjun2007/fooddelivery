@@ -3,28 +3,31 @@ import Welcompage from "./components/Welcompage";
 import Page2 from "./components/Page2";
 import Page3 from "./components/Page3";
 import Page4 from "./components/Page4";
-import Loginpage from "./pages/Loginpage"
+import Loginpage from "./pages/Loginpage";
 import Home from "./pages/Home";
 import ProductDetails from "./components/ProductDetails";
 import Order from "./pages/Order";
 import Checkout from "./pages/Checkout";
-import Payment from "./pages/Payment";  
+import Payment from "./pages/Payment";
 import PaymentSuccess from "./pages/PaymentSuccess";
+import OrderTracking from "./pages/OrderTracking";
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Welcompage />} />
         <Route path="/page2" element={<Page2 />} />
-        <Route path="/page3" element={<Page3/>}/>
-        <Route path="/page4" element={<Page4/>}/>
-        <Route path="/loginpage" element={<Loginpage/>}/>
-        <Route path="/home" element={<Home/>}/>
+        <Route path="/page3" element={<Page3 />} />
+        <Route path="/page4" element={<Page4 />} />
+        <Route path="/loginpage" element={<Loginpage />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/product/:id" element={<ProductDetails />} />
-        <Route path="/Order" element={<Order />} />
+        <Route path="/order" element={<Order />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/payment-success" element={<PaymentSuccess />} />
+        <Route path="/tracking" element={<OrderTracking />} />
       </Routes>
     </BrowserRouter>
   );

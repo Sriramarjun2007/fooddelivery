@@ -38,7 +38,7 @@ function Footer() {
 
         {/* Cart */}
         <div
-          onClick={() => navigate("/cart")}
+          onClick={() => alert("feature will update soon")}
           className={`flex flex-col items-center cursor-pointer ${
             location.pathname === "/cart"
               ? "text-[#FB5203]"

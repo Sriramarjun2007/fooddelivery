@@ -8,6 +8,8 @@ function Payment() {
   const navigate = useNavigate();
   const [selectedMethod, setSelectedMethod] = useState("card");
 
+  const order = JSON.parse(localStorage.getItem("order")) || [];
+
   const paymentMethods = [
     {
       id: "card",
@@ -31,48 +33,63 @@ function Payment() {
   ];
 
   const handlePayment = () => {
+    const trackingOrder = {
+      id: Date.now(),
+      items: order,
+      status: "Preparing",
+      estimatedTime: "25-30 mins",
+    };
+
+    // Save tracking data
+    localStorage.setItem(
+      "trackingOrder",
+      JSON.stringify(trackingOrder)
+    );
+
+    // Clear current order
+    localStorage.removeItem("order");
+
     alert("Payment Successful!");
 
-    localStorage.removeItem("cart");
-
-    navigate("/home");
+    navigate("/payment-success");
   };
 
   return (
     <div className="min-h-screen bg-white md:hidden">
 
       {/* Header */}
-      <div className="flex items-center gap-4 p-4">
+      <div className="flex items-center gap-4 p-4 border-b">
         <button onClick={() => navigate(-1)}>
           <FaArrowLeft className="text-xl" />
         </button>
 
-        <h1 className="font-bold text-lg">Payment</h1>
+        <h1 className="font-bold text-xl">
+          Payment
+        </h1>
       </div>
 
-      <div className="px-5">
+      <div className="px-5 py-6">
 
-        <h2 className="font-bold text-lg mb-5">
-          Payment Method
+        <h2 className="font-bold text-xl mb-6">
+          Select Payment Method
         </h2>
 
         {paymentMethods.map((method) => (
           <div
             key={method.id}
             onClick={() => setSelectedMethod(method.id)}
-            className={`flex justify-between items-center p-4 rounded-2xl mb-4 cursor-pointer border-2 transition
-              ${
-                selectedMethod === method.id
-                  ? "border-[#FB5203]"
-                  : "border-transparent"
-              }`}
+            className={`flex justify-between items-center p-4 rounded-2xl mb-4 cursor-pointer border-2 transition-all ${
+              selectedMethod === method.id
+                ? "border-[#FB5203] bg-orange-50"
+                : "border-gray-200"
+            }`}
           >
             <div>
               <h3 className="font-semibold text-lg">
                 {method.title}
               </h3>
 
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-500">
                 {method.subtitle}
               </p>
             </div>
@@ -88,16 +105,15 @@ function Payment() {
             </div>
           </div>
         ))}
-
       </div>
 
-      {/* Pay Button */}
-      <div className="fixed bottom-5 left-0 right-0 px-4">
+      {/* Bottom Button */}
+      <div className="fixed bottom-5 left-0 right-0 px-5">
         <button
-        onClick={() => navigate("/payment-success")}
-        className="w-full bg-[#FB5203] text-white py-4 rounded-full font-semibold"
+          onClick={handlePayment}
+          className="w-full bg-[#FB5203] text-white py-4 rounded-full text-lg font-semibold"
         >
-        Pay Now
+          Pay Now
         </button>
       </div>
 
