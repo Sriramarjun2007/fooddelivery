@@ -101,11 +101,11 @@ function Order() {
               </span>
             </div>
 
-            <button
-              className="w-full bg-[#FB5203] text-white py-3 rounded-xl mt-5 font-semibold"
-            >
-              Place Order
-            </button>
+          <button
+            onClick={() => navigate("/checkout")}
+          className="w-full bg-[#FB5203] text-white py-3 rounded-xl mt-5 font-semibold">
+          Place Order
+        </button>
           </div>
         </>
       )}

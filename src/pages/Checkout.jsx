@@ -1,6 +1,6 @@
 import { FaArrowLeft, FaRegClock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
+import Footer from "../components/Footer";
 function Checkout() {
   const navigate = useNavigate();
 
@@ -69,22 +69,27 @@ function Checkout() {
               <p className="text-gray-500 text-sm">
                 Estimated delivery time
               </p>
+              
             </div>
 
           </div>
         </div>
-
-      </div>
-
-      {/* Bottom Button */}
-      <div className="p-4">
+          <div className="p-4 mt-80">
         <button
-          className="w-full bg-[#FB5203] text-white py-4 rounded-full font-semibold"
-        >
-          Proceed to Payment
-        </button>
+            onClick={() => navigate("/payment")}
+            className="w-full bg-[#FB5203] text-white py-4 rounded-full font-semibold"
+            >
+            Proceed to Payment
+           </button>
       </div>
+      </div>
+      <>
+                <div className="pl-5 pr-5 pb-24 md:hidden">
+                {/* Your entire Home page content goes here */}
+                </div>
 
+                <Footer />
+            </>
     </div>
   );
 }

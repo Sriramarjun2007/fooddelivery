@@ -7,6 +7,9 @@ import Loginpage from "./pages/Loginpage"
 import Home from "./pages/Home";
 import ProductDetails from "./components/ProductDetails";
 import Order from "./pages/Order";
+import Checkout from "./pages/Checkout";
+import Payment from "./pages/Payment";  
+import PaymentSuccess from "./pages/PaymentSuccess";
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +22,9 @@ function App() {
         <Route path="/home" element={<Home/>}/>
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/Order" element={<Order />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/payment-success" element={<PaymentSuccess />} />
       </Routes>
     </BrowserRouter>
   );
