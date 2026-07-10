@@ -8,22 +8,67 @@ function LoginPage() {
   const [activeTab, setActiveTab] = useState("login");
   const navigate = useNavigate();
 
+  // Login
   const handleLogin = (e) => {
     e.preventDefault();
 
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    // Demo validation
-    if (email === "admin@gmail.com" && password === "123456") {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const user = users.find(
+      (u) => u.email === email && u.password === password
+    );
+
+    if (user) {
+      alert("Login Successful");
       navigate("/home");
     } else {
       alert("Invalid Email or Password");
     }
   };
 
+  // Sign Up
+  const handleSignup = (e) => {
+    e.preventDefault();
+
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const phone = e.target.phone.value;
+    const password = e.target.password.value;
+    const confirmPassword = e.target.confirmPassword.value;
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const alreadyExists = users.find((user) => user.email === email);
+
+    if (alreadyExists) {
+      alert("Email already registered");
+      return;
+    }
+
+    users.push({
+      name,
+      email,
+      phone,
+      password,
+    });
+
+    localStorage.setItem("users", JSON.stringify(users));
+
+    alert("Account Created Successfully!");
+
+    setActiveTab("login");
+  };
+
   return (
-    <div className="fixed inset-0 md:hidden">
+    <div className="fixed inset-0 overflow-y-auto md:hidden bg-white">
       <div className="flex justify-center mt-2">
         <img src={loginlogo} alt="Logo" className="w-20 h-20" />
       </div>
@@ -33,12 +78,13 @@ function LoginPage() {
       </div>
 
       <div className="text-center mt-1 text-sm">
-        Log in to continue ordering
+        {activeTab === "login"
+          ? "Log in to continue ordering"
+          : "Create your Food Flow account"}
       </div>
 
+      {/* Tabs */}
       <div className="flex gap-3 justify-center bg-gray-300 mx-3 mt-3 p-2 rounded-xl">
-
-        {/* Login */}
         <button
           onClick={() => setActiveTab("login")}
           className={`w-35 p-1 rounded-lg transition ${
@@ -50,7 +96,6 @@ function LoginPage() {
           Login
         </button>
 
-        {/* Sign Up */}
         <button
           onClick={() => setActiveTab("signup")}
           className={`w-35 p-1 rounded-lg transition ${
@@ -63,41 +108,103 @@ function LoginPage() {
         </button>
       </div>
 
-      {/* Login Form */}
-      <form className="ml-5 mt-2 mr-5" onSubmit={handleLogin}>
-        <label>Email</label>
+      <div className="ml-5 mr-5 mt-4">
+        {activeTab === "login" ? (
+          <form onSubmit={handleLogin}>
+            <label>Email</label>
 
-        <input
-          name="email"
-          type="email"
-          placeholder="Enter your Email"
-          required
-          className="w-full p-2 bg-gray-200 rounded-lg border border-transparent focus:border-gray-300 focus:outline-none"
-        />
+            <input
+              name="email"
+              type="email"
+              placeholder="Enter your Email"
+              required
+              className="w-full p-2 bg-gray-200 rounded-lg border border-transparent focus:border-gray-300 focus:outline-none"
+            />
 
-        <label className="block mt-1">Password</label>
+            <label className="block mt-3">Password</label>
 
-        <input
-          name="password"
-          type="password"
-          placeholder="Enter your Password"
-          required
-          className="w-full p-2 bg-gray-200 rounded-lg border border-transparent focus:border-gray-300 focus:outline-none"
-        />
+            <input
+              name="password"
+              type="password"
+              placeholder="Enter your Password"
+              required
+              className="w-full p-2 bg-gray-200 rounded-lg border border-transparent focus:border-gray-300 focus:outline-none"
+            />
 
-        <p className="text-red-500 text-right cursor-pointer mt-1">
-          Forgot Password?
-        </p>
-          
-        <button
-          type="submit"
-          className="w-full bg-[#FB5203] text-white p-3 rounded-xl mt-2"
-        >
-          Login
-        </button>
-      </form>
+            <p className="text-red-500 text-right mt-2 cursor-pointer">
+              Forgot Password?
+            </p>
 
-      <div className="flex items-center ml-5 mr-5 my-4">
+            <button
+              type="submit"
+              className="w-full bg-[#FB5203] text-white p-3 rounded-xl mt-3"
+            >
+              Login
+            </button>
+          </form>
+        ) : (
+          <form onSubmit={handleSignup}>
+            <label>Full Name</label>
+
+            <input
+              name="name"
+              type="text"
+              placeholder="Enter your Full Name"
+              required
+              className="w-full p-2 bg-gray-200 rounded-lg border border-transparent focus:border-gray-300 focus:outline-none"
+            />
+
+            <label className="block mt-3">Email</label>
+
+            <input
+              name="email"
+              type="email"
+              placeholder="Enter your Email"
+              required
+              className="w-full p-2 bg-gray-200 rounded-lg border border-transparent focus:border-gray-300 focus:outline-none"
+            />
+
+            <label className="block mt-3">Phone Number</label>
+
+            <input
+              name="phone"
+              type="tel"
+              placeholder="Enter your Phone Number"
+              required
+              className="w-full p-2 bg-gray-200 rounded-lg border border-transparent focus:border-gray-300 focus:outline-none"
+            />
+
+            <label className="block mt-3">Password</label>
+
+            <input
+              name="password"
+              type="password"
+              placeholder="Create Password"
+              required
+              className="w-full p-2 bg-gray-200 rounded-lg border border-transparent focus:border-gray-300 focus:outline-none"
+            />
+
+            <label className="block mt-3">Confirm Password</label>
+
+            <input
+              name="confirmPassword"
+              type="password"
+              placeholder="Confirm Password"
+              required
+              className="w-full p-2 bg-gray-200 rounded-lg border border-transparent focus:border-gray-300 focus:outline-none"
+            />
+
+            <button
+              type="submit"
+              className="w-full bg-[#FB5203] text-white p-3 rounded-xl mt-5"
+            >
+              Create Account
+            </button>
+          </form>
+        )}
+      </div>
+
+      <div className="flex items-center ml-5 mr-5 my-5">
         <hr className="flex-1 border-gray-300" />
         <span className="px-3 text-gray-500 text-sm">
           or continue with
@@ -105,29 +212,27 @@ function LoginPage() {
         <hr className="flex-1 border-gray-300" />
       </div>
 
-      <div className="space-y-2 mt-2 ml-5 mr-5">
-
-        <button className="w-full flex items-center pl-20 gap-2 bg-gray-200 rounded-2xl px-2 py-2">
+      <div className="space-y-3 ml-5 mr-5 pb-6">
+        <button className="w-full flex items-center justify-center gap-3 bg-gray-200 rounded-2xl py-3">
           <FcGoogle className="text-xl" />
-          <span className="text-lg font-medium text-[#4B1E1E]">
+          <span className="font-medium">
             Continue with Google
           </span>
         </button>
 
-        <button className="w-full flex items-center justify-center gap-2 bg-gray-200 rounded-2xl px-2 py-2">
+        <button className="w-full flex items-center justify-center gap-3 bg-gray-200 rounded-2xl py-3">
           <FaFacebook className="text-xl text-blue-600" />
-          <span className="text-lg font-medium text-[#4B1E1E]">
+          <span className="font-medium">
             Continue with Facebook
           </span>
         </button>
 
-        <button className="w-full flex items-center pl-20 gap-2 bg-gray-200 rounded-2xl px-2 py-2">
-          <FaApple className="text-xl text-black" />
-          <span className="text-lg font-medium text-[#4B1E1E]">
+        <button className="w-full flex items-center justify-center gap-3 bg-gray-200 rounded-2xl py-3">
+          <FaApple className="text-xl" />
+          <span className="font-medium">
             Continue with Apple
           </span>
         </button>
-
       </div>
     </div>
   );
