@@ -9,8 +9,11 @@ import burger from "../assets/burger.png"
 import Sushicompo from "../assets/Sushicompo.png"
 import vegbowl from "../assets/vegbowl.png"
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
+
 function Home(){
     const [selectedCategory, setSelectedCategory] = useState("all");
+    const navigate = useNavigate();
     const [products] = useState([
   {
     id: 1,
@@ -158,6 +161,7 @@ const filteredProducts =
                             {filteredProducts.map((product) => (
                                 <div
                                 key={product.id}
+                                 onClick={() => navigate(`/product/${product.id}`)}
                                 className="bg-white rounded-xl overflow-hidden shadow-md"
                                 >
                                 <img

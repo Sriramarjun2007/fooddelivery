@@ -5,6 +5,7 @@ import Page3 from "./components/Page3";
 import Page4 from "./components/Page4";
 import Loginpage from "./pages/Loginpage"
 import Home from "./pages/Home";
+import ProductDetails from "./components/ProductDetails";
 function App() {
   return (
     <BrowserRouter>
@@ -15,6 +16,7 @@ function App() {
         <Route path="/page4" element={<Page4/>}/>
         <Route path="/loginpage" element={<Loginpage/>}/>
         <Route path="/home" element={<Home/>}/>
+        <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>
     </BrowserRouter>
   );
