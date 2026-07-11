@@ -116,11 +116,11 @@ localStorage.setItem(
       </div>
 
       {/* Bottom Buttons */}
-      <div className="fixed bottom-5 left-0 right-0 px-5">
+      <div className="bottom-5 left-0 right-0 px-5 mt-10">
 
         <button
           onClick={() => navigate("/tracking")}
-          className="w-full bg-[#FB5203] text-white py-4 rounded-full font-semibold"
+          className="w-full bg-[#FB5203] text-white py-4 rounded-full font-semibold "
         >
           Track Order
         </button>

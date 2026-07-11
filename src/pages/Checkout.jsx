@@ -74,7 +74,7 @@ function Checkout() {
 
           </div>
         </div>
-          <div className="p-4 mt-80">
+          <div className="p-4 mt-40">
         <button
             onClick={() => navigate("/payment")}
             className="w-full bg-[#FB5203] text-white py-4 rounded-full font-semibold"

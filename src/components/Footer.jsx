@@ -46,7 +46,7 @@ function Footer() {
           }`}
         >
           <FaComments className="text-2xl" />
-          <p className="text-xs mt-1">Cart</p>
+          <p className="text-xs mt-1">Chat</p>
         </div>
 
         {/* Profile */}
