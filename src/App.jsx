@@ -11,7 +11,7 @@ import Checkout from "./pages/Checkout";
 import Payment from "./pages/Payment";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import OrderTracking from "./pages/OrderTracking";
-
+import Profile from "./pages/Profile";
 
 
 function App() {
@@ -30,6 +30,7 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/payment-success" element={<PaymentSuccess />} />
         <Route path="/tracking" element={<OrderTracking />} />
+        <Route path="/profile" element={<Profile/>}/>
       </Routes>
     </BrowserRouter>
   );

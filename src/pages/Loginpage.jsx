@@ -22,9 +22,10 @@ function LoginPage() {
     );
 
     if (user) {
+      localStorage.setItem("currentUser", JSON.stringify(user));
       alert("Login Successful");
       navigate("/home");
-    } else {
+} else {
       alert("Invalid Email or Password");
     }
   };

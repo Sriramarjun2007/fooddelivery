@@ -42,7 +42,7 @@ function Footer() {
           className={`flex flex-col items-center cursor-pointer ${
             location.pathname === "/cart"
               ? "text-[#FB5203]"
-              : "text-gray-500"
+              : "text-gray-500" 
           }`}
         >
           <FaComments className="text-2xl" />
@@ -51,7 +51,7 @@ function Footer() {
 
         {/* Profile */}
         <div
-          onClick={() => alert("work in progress")}
+          onClick={() => navigate("/profile")}
           className={`flex flex-col items-center cursor-pointer ${
             location.pathname === "/profile"
               ? "text-[#FB5203]"
