@@ -92,9 +92,9 @@ const filteredProducts =
                     </div>
                 </div>    
                 </div>
-                <div className="ml-8 mt-2 font-bold">Categories</div>
+                <div className="ml-2 mt-2 font-bold">Categories</div>
                 <div>
-                   <div className="flex justify-center gap-4 mt-5">
+                   <div className="flex justify-center gap-2 mt-5">
 
                         {/* Fire */}
                         <div

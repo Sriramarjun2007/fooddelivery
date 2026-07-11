@@ -9,6 +9,7 @@ import {
   LogOut,
   ChevronRight,
 } from "lucide-react";
+import Footer from "../components/Footer";
 
 const ORANGE = "#FB5203";
 const ORANGE_LIGHT = "#FFE4D6";
@@ -325,6 +326,13 @@ export default function ProfilePage() {
           </div>
         </div>
       )}
+      <>
+                <div className="pl-5 pr-5 pb-24 md:hidden">
+                {/* Your entire Home page content goes here */}
+                </div>
+
+                <Footer />
+            </>
     </div>
   );
 }
