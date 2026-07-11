@@ -99,10 +99,12 @@ export default function ProfilePage() {
   const [user, setUser] = useState({
     name: "Guest",
     email: "",
-    orders: 0,
     favorites: 0,
     sent: 0,
   });
+
+  const [activeOrder, setActiveOrder] = useState(null);
+  const [pastOrders, setPastOrders] = useState([]);
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("currentUser"));
@@ -111,19 +113,26 @@ export default function ProfilePage() {
         ...prev,
         name: stored.name,
         email: stored.email,
-        orders: stored.orders ?? 0,
         favorites: stored.favorites ?? 0,
         sent: stored.sent ?? 0,
       }));
     } else {
       // No one logged in, send back to login
-      navigate("/loginpage");
+      navigate("/login");
     }
+
+    const tracking = JSON.parse(localStorage.getItem("trackingOrder"));
+    setActiveOrder(tracking || null);
+
+    const history = JSON.parse(localStorage.getItem("orderHistory")) || [];
+    setPastOrders(history);
   }, [navigate]);
+
+  const orderCount = pastOrders.length + (activeOrder ? 1 : 0);
 
   const handleLogout = () => {
     localStorage.removeItem("currentUser");
-    navigate("/loginpage");
+    navigate("/login");
   };
 
   return (
@@ -163,7 +172,7 @@ export default function ProfilePage() {
 
           {/* Stats */}
           <div className="flex justify-around px-6 mt-6">
-            <StatBlock value={user.orders} label="Orders" />
+            <StatBlock value={orderCount} label="Orders" />
             <StatBlock value={user.favorites} label="Favorites" />
             <StatBlock value={user.sent} label="Sent" />
           </div>
@@ -218,9 +227,57 @@ export default function ProfilePage() {
               ))}
 
             {tab === "orders" && (
-              <p className="text-sm text-gray-400 text-center py-10">
-                Your order history will appear here.
-              </p>
+              <>
+                {activeOrder && (
+                  <div
+                    className="rounded-2xl px-4 py-4 mb-3"
+                    style={{ backgroundColor: "#F7F6F4" }}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium text-gray-900">
+                        Order #{activeOrder.id}
+                      </span>
+                      <span className="text-xs font-medium" style={{ color: ORANGE }}>
+                        {activeOrder.status}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-500 mt-1">
+                      ETA: {activeOrder.estimatedTime}
+                    </p>
+                    <button
+                      onClick={() => navigate("/tracking")}
+                      className="text-sm font-medium mt-2"
+                      style={{ color: ORANGE }}
+                    >
+                      Track order
+                    </button>
+                  </div>
+                )}
+
+                {pastOrders.length === 0 && !activeOrder && (
+                  <p className="text-sm text-gray-400 text-center py-10">
+                    Your order history will appear here.
+                  </p>
+                )}
+
+                {pastOrders.map((order) => (
+                  <div
+                    key={order.id}
+                    className="rounded-2xl px-4 py-4 mb-3"
+                    style={{ backgroundColor: "#F7F6F4" }}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium text-gray-900">
+                        Order #{order.id}
+                      </span>
+                      <span className="text-xs font-medium text-green-600">
+                        Delivered
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-500 mt-1">{order.orderedAt}</p>
+                  </div>
+                ))}
+              </>
             )}
 
             {tab === "payments" && (
